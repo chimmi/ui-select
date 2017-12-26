@@ -617,7 +617,7 @@ uis.controller('uiSelectCtrl',
 
     var key = e.which;
 
-    if (~[KEY.ENTER,KEY.ESC].indexOf(key)){
+    if (~[KEY.ENTER,KEY.ESC].indexOf(key) || KEY.isVerticalMovement(key)){
       e.preventDefault();
       e.stopPropagation();
     }
