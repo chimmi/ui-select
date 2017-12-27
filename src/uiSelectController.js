@@ -551,7 +551,7 @@ uis.controller('uiSelectCtrl',
           } else {
             return container.children[0].clientWidth;
           }
-        };
+        },
         updateIfVisible = function(containerWidth) {
           if (containerWidth === 0) {
             return false;
