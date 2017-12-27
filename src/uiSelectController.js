@@ -540,8 +540,18 @@ uis.controller('uiSelectCtrl',
         container = ctrl.$element[0],
         calculateContainerWidth = function() {
           // Return the container width only if the search input is visible
-          return container.clientWidth * !!input.offsetParent;
-        },
+          if(!input.offsetParent){
+            return 0;
+          }
+          if(typeof window.getComputedStyle !== 'undefined'){
+            var computedStyle = window.getComputedStyle(container.children[0]),
+              paddings = parseFloat(computedStyle.paddingLeft) + parseFloat(computedStyle.paddingRight),
+              borders = parseFloat(computedStyle.borderLeft) + parseFloat(computedStyle.borderRight);
+            return container.children[0].clientWidth - paddings - borders;
+          } else {
+            return container.children[0].clientWidth;
+          }
+        };
         updateIfVisible = function(containerWidth) {
           if (containerWidth === 0) {
             return false;
