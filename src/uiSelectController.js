@@ -547,7 +547,7 @@ uis.controller('uiSelectCtrl',
             var computedStyle = window.getComputedStyle(container.children[0]),
               paddings = parseFloat(computedStyle.paddingLeft) + parseFloat(computedStyle.paddingRight),
               borders = parseFloat(computedStyle.borderLeft) + parseFloat(computedStyle.borderRight);
-            return container.children[0].clientWidth - paddings - borders;
+            return container.children[0].clientWidth - (paddings || 0) - (borders || 0);
           } else {
             return container.children[0].clientWidth;
           }
